@@ -21,14 +21,6 @@
             background-size: cover;
             z-index: -1;
         }
-        .hidden-text {
-            width: 0;                 /* Ширина скрыта */
-            height: 0;                /* Высота скрыта */
-            overflow: hidden;         /* Контент скрыт */
-            opacity: 0;               /* Полностью прозрачный */
-            position: absolute;       /* Чтобы текст не занимал место на странице */
-            pointer-events: none;     /* Отключаем кликабельность */
-        }
         .mute-button {
             position: absolute;
             top: 10px;
@@ -53,9 +45,8 @@
 
     <div class="background-image"></div>
 
-    <div class="hidden-text" id="hiddenText">
-        <span>frog3games.github.io/ArgSite2/</span>
-    </div>
+    <!-- Скрытая ссылка, доступная только в коде страницы -->
+    <!-- frog3games.github.io/ArgSite2/ -->
 
     <button class="mute-button" id="muteButton">Включить звук</button>
 
