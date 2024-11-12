@@ -5,93 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DA_ARG</title>
     <style>
-        /* Стиль для полноэкранного видео */
         body, html {
             margin: 0;
             padding: 0;
             overflow: hidden;
             height: 100%;
         }
-        video {
+        .background-image {
             position: absolute;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            object-fit: cover;
+            background: url('https://www.dropbox.com/scl/fi/r1tm6ckjx0qgoswsr58s9/.png?rlkey=omv7lnvdzgedm669r0dqg22fy&raw=1') no-repeat center center;
+            background-size: cover;
             z-index: -1;
         }
-        /* Стиль для еле заметного текста в нижнем левом углу */
-        .corner-text {
+        .hidden-text {
             position: absolute;
             bottom: 10px;
             left: 10px;
-            color: rgba(255, 255, 255, 0.3); /* Почти прозрачный белый */
+            color: rgba(255, 255, 255, 0.03);
             font-size: 1em;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Легкая тень для контраста */
-            opacity: 0; /* Скрыть текст по умолчанию */
-            transition: opacity 0.5s; /* Плавное появление */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.5s;
         }
-        .corner-text a {
-            color: rgba(255, 255, 255, 0.01); /* Полупрозрачный цвет ссылки */
+        .hidden-text a {
+            color: rgba(255, 255, 255, 0.01);
             text-decoration: none;
         }
-        .corner-text a:hover {
-            color: rgba(255, 255, 255, 0.2); /* Слегка ярче при наведении */
-            text-decoration: underline;
-        }
-        /* Стиль для белой кнопки включения/выключения звука */
         .mute-button {
             position: absolute;
             top: 10px;
             right: 10px;
             padding: 10px 15px;
-            background-color: white; /* Белый фон */
-            color: black; /* Черный текст для контраста */
+            background-color: white;
+            color: black;
             border: none;
             border-radius: 5px;
             font-size: 1em;
             cursor: pointer;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Легкая тень */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            opacity: 1;
+            transition: opacity 0.5s;
         }
         .mute-button:hover {
-            background-color: #f0f0f0; /* Светло-серый при наведении */
+            background-color: #f0f0f0;
         }
     </style>
 </head>
 <body>
 
-    <!-- Видеоплеер -->
-    <video autoplay loop muted id="backgroundVideo">
-        <source src="https://www.dropbox.com/scl/fi/gayji3472uqem60a9ywqu/.mp4?rlkey=ue1xkng2vn7ipthyrckagymyq&raw=1" type="video/mp4">
-        Ваш браузер не поддерживает видео. Обновите его до более новой версии.
-    </video>
+    <div class="background-image"></div>
 
-    <!-- Еле заметный текст в левом нижнем углу -->
-    <div class="corner-text" id="cornerText">
+    <div class="hidden-text" id="hiddenText">
         <a href="https://frog3games.github.io/argdoggyadventure2/" target="_blank">https://frog3games.github.io/argdoggyadventure2/</a>
     </div>
 
-    <!-- Белая кнопка для включения/выключения звука -->
     <button class="mute-button" id="muteButton">Включить звук</button>
 
-    <script>
-        // Ждем, пока видео загрузится
-        const video = document.getElementById('backgroundVideo');
-        const text = document.getElementById('cornerText');
-        const muteButton = document.getElementById('muteButton');
+    <audio id="backgroundAudio" loop>
+        <source src="https://www.dropbox.com/scl/fi/efjarofv4baqslxnznlif/.mp3?rlkey=eg0sa63x4jfefsu3avoow0i0x&raw=1" type="audio/mp3">
+    </audio>
 
-        video.addEventListener('loadeddata', () => {
-            text.style.opacity = 1; // Показать текст, когда видео готово
+    <script>
+        const audio = document.getElementById('backgroundAudio');
+        const muteButton = document.getElementById('muteButton');
+        const hiddenText = document.getElementById('hiddenText');
+
+        window.addEventListener('load', () => {
+            muteButton.style.opacity = 1;
+            hiddenText.style.opacity = 1;
         });
 
-        // Функция для включения/выключения звука
         muteButton.addEventListener('click', () => {
-            if (video.muted) {
-                video.muted = false;
+            if (audio.paused) {
+                audio.play();
+                audio.volume = 0.2;
                 muteButton.textContent = 'Выключить звук';
             } else {
-                video.muted = true;
+                audio.pause();
                 muteButton.textContent = 'Включить звук';
             }
         });
