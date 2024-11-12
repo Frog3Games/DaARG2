@@ -29,30 +29,73 @@
             color: rgba(255, 255, 255, 0.3); /* Почти прозрачный белый */
             font-size: 1em;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Легкая тень для контраста */
+            opacity: 0; /* Скрыть текст по умолчанию */
+            transition: opacity 0.5s; /* Плавное появление */
         }
         .corner-text a {
-            color: rgba(255, 255, 255, 0.01
-                       ); /* Полупрозрачный цвет ссылки */
+            color: rgba(255, 255, 255, 0.01); /* Полупрозрачный цвет ссылки */
             text-decoration: none;
         }
         .corner-text a:hover {
             color: rgba(255, 255, 255, 0.2); /* Слегка ярче при наведении */
             text-decoration: underline;
         }
+        /* Стиль для белой кнопки включения/выключения звука */
+        .mute-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 15px;
+            background-color: white; /* Белый фон */
+            color: black; /* Черный текст для контраста */
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Легкая тень */
+        }
+        .mute-button:hover {
+            background-color: #f0f0f0; /* Светло-серый при наведении */
+        }
     </style>
 </head>
 <body>
 
     <!-- Видеоплеер -->
-    <video autoplay loop muted>
+    <video autoplay loop muted id="backgroundVideo">
         <source src="https://www.dropbox.com/scl/fi/gayji3472uqem60a9ywqu/.mp4?rlkey=ue1xkng2vn7ipthyrckagymyq&raw=1" type="video/mp4">
         Ваш браузер не поддерживает видео. Обновите его до более новой версии.
     </video>
 
     <!-- Еле заметный текст в левом нижнем углу -->
-    <div class="corner-text">
+    <div class="corner-text" id="cornerText">
         <a href="https://frog3games.github.io/argdoggyadventure2/" target="_blank">https://frog3games.github.io/argdoggyadventure2/</a>
     </div>
+
+    <!-- Белая кнопка для включения/выключения звука -->
+    <button class="mute-button" id="muteButton">Включить звук</button>
+
+    <script>
+        // Ждем, пока видео загрузится
+        const video = document.getElementById('backgroundVideo');
+        const text = document.getElementById('cornerText');
+        const muteButton = document.getElementById('muteButton');
+
+        video.addEventListener('loadeddata', () => {
+            text.style.opacity = 1; // Показать текст, когда видео готово
+        });
+
+        // Функция для включения/выключения звука
+        muteButton.addEventListener('click', () => {
+            if (video.muted) {
+                video.muted = false;
+                muteButton.textContent = 'Выключить звук';
+            } else {
+                video.muted = true;
+                muteButton.textContent = 'Включить звук';
+            }
+        });
+    </script>
 
 </body>
 </html>
