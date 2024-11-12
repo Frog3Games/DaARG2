@@ -22,11 +22,12 @@
             z-index: -1;
         }
         .hidden-text {
-            position: absolute;
-            bottom: -9999px; /* Убираем текст за пределы экрана */
-            left: -9999px;
-            visibility: hidden; /* Скрываем текст */
-            pointer-events: none;
+            width: 0;                 /* Ширина скрыта */
+            height: 0;                /* Высота скрыта */
+            overflow: hidden;         /* Контент скрыт */
+            opacity: 0;               /* Полностью прозрачный */
+            position: absolute;       /* Чтобы текст не занимал место на странице */
+            pointer-events: none;     /* Отключаем кликабельность */
         }
         .mute-button {
             position: absolute;
