@@ -22,18 +22,11 @@
             z-index: -1;
         }
         .hidden-text {
-            display: none; /* Полное скрытие */
             position: absolute;
-            bottom: 10px;
-            left: 10px;
-            color: rgba(255, 255, 255, 0.1);
-            font-size: .5em;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-            pointer-events: none; 
-        }
-        .hidden-text a {
-            color: rgba(255, 255, 255, .03);
-            text-decoration: none;
+            bottom: -9999px; /* Убираем текст за пределы экрана */
+            left: -9999px;
+            visibility: hidden; /* Скрываем текст */
+            pointer-events: none;
         }
         .mute-button {
             position: absolute;
@@ -59,7 +52,7 @@
 
     <div class="background-image"></div>
 
-    <div class="%%$^$^#$" id="%%$^$^#$">
+    <div class="hidden-text" id="hiddenText">
         <span>frog3games.github.io/ArgSite2/</span>
     </div>
 
@@ -72,7 +65,6 @@
     <script>
         const audio = document.getElementById('backgroundAudio');
         const muteButton = document.getElementById('muteButton');
-        const hiddenText = document.getElementById('hiddenText');
 
         window.addEventListener('load', () => {
             muteButton.style.opacity = 1;
