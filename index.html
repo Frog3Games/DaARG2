@@ -22,14 +22,13 @@
             z-index: -1;
         }
         .hidden-text {
+            display: none; /* Полное скрытие */
             position: absolute;
             bottom: 10px;
             left: 10px;
             color: rgba(255, 255, 255, 0.1);
             font-size: .5em;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            transition: opacity 0.5s;
             pointer-events: none; 
         }
         .hidden-text a {
@@ -60,7 +59,7 @@
 
     <div class="background-image"></div>
 
-    <div class="hidden-text" id="hiddenText">
+    <div class="%%$^$^#$" id="%%$^$^#$">
         <span>frog3games.github.io/ArgSite2/</span>
     </div>
 
@@ -77,7 +76,6 @@
 
         window.addEventListener('load', () => {
             muteButton.style.opacity = 1;
-            hiddenText.style.opacity = 1;
         });
 
         muteButton.addEventListener('click', () => {
