@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA_ARG</title>
+    <style>
+        /* Стиль для полноэкранного видео */
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+        /* Стиль для еле заметного текста в нижнем левом углу */
+        .corner-text {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: rgba(255, 255, 255, 0.3); /* Почти прозрачный белый */
+            font-size: 1em;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Легкая тень для контраста */
+        }
+        .corner-text a {
+            color: rgba(255, 255, 255, 0.01
+                       ); /* Полупрозрачный цвет ссылки */
+            text-decoration: none;
+        }
+        .corner-text a:hover {
+            color: rgba(255, 255, 255, 0.2); /* Слегка ярче при наведении */
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Видеоплеер -->
+    <video autoplay loop muted>
+        <source src="https://www.dropbox.com/scl/fi/gayji3472uqem60a9ywqu/.mp4?rlkey=ue1xkng2vn7ipthyrckagymyq&raw=1" type="video/mp4">
+        Ваш браузер не поддерживает видео. Обновите его до более новой версии.
+    </video>
+
+    <!-- Еле заметный текст в левом нижнем углу -->
+    <div class="corner-text">
+        <a href="https://frog3games.github.io/argdoggyadventure2/" target="_blank">https://frog3games.github.io/argdoggyadventure2/</a>
+    </div>
+
+</body>
+</html>
